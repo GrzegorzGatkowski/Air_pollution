@@ -2,5 +2,5 @@ streamlit==1.8.1
 requests
 datetime
 pandas
-matplotlib.pyplot
+matplotlib
 seaborn
