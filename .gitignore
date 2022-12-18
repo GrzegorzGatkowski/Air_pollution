@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
-config.py
+creds.py
+timedelta.py
 __pycache__/
 *.py[cod]
 *$py.class

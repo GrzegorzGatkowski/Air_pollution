@@ -1,19 +1,17 @@
 import requests
-import datetime
 import pandas as pd
-import config
+import creds
+import datetime
 
 
 def get_pollution_data(start_time, end_time, lat, lon):
     """
     Retrieve air pollution data from the OpenWeatherMap API for a specified time range and location.
-
     Parameters:
         start_time (str): The start time for the data range, in the format "YYYY-MM-DD".
         end_time (str): The end time for the data range, in the format "YYYY-MM-DD".
         lat (float): The latitude of the location for which to retrieve data.
         lon (float): The longitude of the location for which to retrieve data.
-
     Returns:
         pandas.DataFrame: A dataframe containing the API response data.
     """
@@ -23,7 +21,7 @@ def get_pollution_data(start_time, end_time, lat, lon):
 
     # API endpoint and API key
     api_endpoint = "https://api.openweathermap.org/data/2.5/air_pollution/history"
-    api_key = config.api_key
+    api_key = creds.api_key
 
     # Send the API request
     response = requests.get(api_endpoint, params={

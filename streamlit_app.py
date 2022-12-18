@@ -2,16 +2,16 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import datetime
+from datetime import datetime, timedelta
 from air_quality_plot import plot_air_quality
 from pollution import get_pollution_data
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-today = datetime.date.today()
-print(today)
+now = datetime.now() - timedelta(minutes=1)
+week_earlier = datetime.now() - timedelta(days=7)
 
 # Load the data
-data = get_pollution_data("2022-12-15", "2022-12-16", 49.9778328, 18.9425124)
+data = get_pollution_data('2022-12-17', '2022-12-18', 49.9778328, 18.9425124)
 
 # Create a list of columns to choose from
 column_options = ['Carbon Monoxide_(CO)', 'Nitric oxide_(NO)',
