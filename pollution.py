@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-import creds
+import streamlit as st
 import datetime
 
 
@@ -21,7 +21,7 @@ def get_pollution_data(start_time, end_time, lat, lon):
 
     # API endpoint and API key
     api_endpoint = "https://api.openweathermap.org/data/2.5/air_pollution/history"
-    api_key = creds.api_key
+    api_key = st.secrets["api_key"]
 
     # Send the API request
     response = requests.get(api_endpoint, params={
