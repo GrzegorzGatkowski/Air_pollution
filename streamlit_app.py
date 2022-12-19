@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from air_quality_plot import plot_air_quality
-from pollution import get_pollution_data, cleaning_columns, rename_columns
+from pollution import get_pollution_data, rename_columns, cleaning_columns, get_current_pollution
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 now = int((datetime.now() - timedelta(minutes=1)).timestamp())
