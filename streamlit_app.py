@@ -4,14 +4,16 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from air_quality_plot import plot_air_quality
-from pollution import get_pollution_data
+from pollution import get_pollution_data, cleaning_columns, rename_columns
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-now = datetime.now() - timedelta(minutes=1)
-week_earlier = datetime.now() - timedelta(days=7)
+now = int((datetime.now() - timedelta(minutes=1)).timestamp())
+week_earlier = int((datetime.now() - timedelta(days=7)).timestamp())
 
 # Load the data
-data = get_pollution_data('2022-12-17', '2022-12-18', 49.9778328, 18.9425124)
+data = get_pollution_data(week_earlier, now, 49.9778328, 18.9425124)
+data = cleaning_columns(data)
+data = rename_columns(data)
 
 # Create a list of columns to choose from
 column_options = ['Carbon Monoxide_(CO)', 'Nitric oxide_(NO)',
