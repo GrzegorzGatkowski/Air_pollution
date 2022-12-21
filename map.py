@@ -9,14 +9,27 @@ print(df.head(10))
 
 print(df.columns)
 
-import plotly.express as px
+import plotly.graph_objects as go
+import json
+# Load the GeoJSON data
+with open("./pszczyna.geojson") as f:
+    geojson = json.load(f)
 
-# create a figure object with the surfacemapbox trace type
-fig = px.scatter_mapbox(df, lon="coord.lat", lat="coord.lon", color="PM2_5", title="Air Pollution",
-                        color_continuous_scale='magma', zoom=10, mapbox_style="open-street-map",
-                        height=500, width=800,
-                        hover_name="PM2_5", hover_data=["coord.lat", "coord.lon", "PM2_5"], 
-                        )
+# Extract the coordinates from the GeoJSON object
+coordinates = geojson["features"][0]["geometry"]["coordinates"]
 
-# Show the figure
+# Create the Scattergeo trace
+trace = go.Scattergeo(
+    lon = [coord[0] for coord in coordinates[0]],
+    lat = [coord[1] for coord in coordinates[0]],
+    mode = "lines",
+)
+
+# Create the Figure object
+fig = go.Figure(data=trace)
+
+# Plot the Figure
 fig.show()
+
+
+

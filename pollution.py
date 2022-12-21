@@ -66,7 +66,7 @@ def get_current_pollution(cord_list) -> pd.DataFrame:
     # Set up an empty pandas dataframe to store the data
     df = pd.DataFrame()
 
-    for lat, lon in cord_list:
+    for lon, lat in cord_list:
         # Make a request to the OpenWeatherMap API
         url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={api_key}"
         response = requests.get(url)
