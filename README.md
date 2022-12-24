@@ -1,25 +1,36 @@
-# Air Pollution
+Built by [grzegorzgatkowski](https://github.com/grzegorzgatkowski)
 
-Built with ❤️ by [grzegorzgatkowski](https://github.com/grzegorzgatkowski)
+# Air Pollution Data Engineering Project
+This project retrieves air pollution data from the OpenWeatherMap API for the city of Pszczyna, Poland and stores it in S3 buckets using Apache Airflow. The data is then visualized and analyzed using Seaborn and Streamlit.
 
-## What's this?
+## Data
+The data for this project consists of air pollution measurements for the city of Pszczyna, Poland. The data includes the following fields:
 
-- `README.md`: This Document! To help you find your way around
-- `streamlit_app.py`: The main app that gets run by [`streamlit`](https://docs.streamlit.io/)
-- `requirements.txt`: Pins the version of packages needed
-- `LICENSE`: Follows Streamlit's use of Apache 2.0 Open Source License
-- `.gitignore`: Tells git to avoid comitting / scanning certain local-specific files
-- `.streamlit/config.toml`: Customizes the behaviour of streamlit without specifying command line arguments (`streamlit config show`)
-- `Makefile`: Provides useful commands for working on the project such as `run`, `lint`, `test`, and `test-e2e`
-- `requirements.dev.txt`: Provides packages useful for development but not necessarily production deployment. Also includes all of `requirements.txt` via `-r`
-- `pyproject.toml`: Provides a main configuration point for Python dev tools
-- `.flake8`: Because `flake8` doesn't play nicely with `pyproject.toml` out of the box
-- `.pre-commit-config.yaml`: Provides safeguards for what you commit and push to your repo
-- `tests/`: Folder for tests to be picked up by `pytest`
+Carbon Monoxide (CO)
+Nitric oxide (NO)
+Nitrogen Dioxide (NO2)
+Ozone (O3)
+Sulfur Dioxide (SO2)
+PM2.5 (particulate matter with a diameter of 2.5 micrometers or less)
+PM10 (particulate matter with a diameter of 10 micrometers or less)
+NH3 (ammonia)
+coord.lon (longitude)
+coord.lat (latitude)
+These pollutants are measured in order to calculate the air quality index (AQI) for the city. The AQI is a measure of the concentration of air pollutants in the air, and is calculated based on the levels of the above pollutants. The AQI can range from 0 (good air quality) to over 500 (hazardous air quality). You can find more information about the AQI and the different pollutants that contribute to it on Wikipedia.
 
-## Local Setup
+## Analysis
+The data is analyzed to understand trends and patterns in air pollution levels over time in Pszczyna. The visualizations created using Seaborn and Streamlit allow users to explore the data and gain insights into the state of air pollution in the city.
 
-Assumes working python installation and some command line knowledge ([install python with conda guide](https://tech.gerardbentley.com/python/beginner/2022/01/29/install-python.html)).
+## Requirements
+To run this project, you will need the following software:
+
+Python 3.x
+Apache Airflow
+Seaborn
+Streamlit
+You will also need an API key from OpenWeatherMap.
+
+## Setup
 
 ```sh
 # External users: download Files
@@ -31,29 +42,16 @@ cd Air_pollution
 make run
 ```
 
+Install the required Python packages using pip install -r requirements.txt.
+
+Set up Apache Airflow and configure the DAG to retrieve data from the OpenWeatherMap API and store it in S3.
+
+Run the Streamlit app to visualize and analyze the data.
 Open your browser to [http://localhost:8501/](http://localhost:8501/) if it doesn't open automatically.
 
-### Local Development
+## Contribution
+We welcome contributions to this project! If you have an idea for improving the data engineering pipeline or the data analysis, please feel free to open a pull request.
 
-The `Makefile` and development requirements provide some handy Python tools for writing better code.
-See the `Makefile` for more detail
+## Acknowledgements
+This project would not have been possible without the data provided by the OpenWeatherMap API. We would like to thank them for making this data available to the public.
 
-```sh
-# Run black, isort, and flake8 on your codebase
-make lint
-# Run pytest with coverage report on all tests not marked with `@pytest.mark.e2e`
-make test
-# Run pytest on tests marked e2e (NOTE: e2e tests require `make run` to be running in a separate terminal)
-make test-e2e
-# Run pytest on tests marked e2e and replace visual baseline images
-make test-e2e-baseline
-# After running tests, display the coverage html report on localhost
-make coverage
-```
-
-## Credits
-
-This package was created with Cookiecutter and the `gerardrbentley/cookiecutter-streamlit` project template.
-
-- Cookiecutter: [https://github.com/audreyr/cookiecutter](https://github.com/audreyr/cookiecutter)
-- `gerardrbentley/cookiecutter-streamlit`: [https://github.com/gerardrbentley/cookiecutter-streamlit](https://github.com/gerardrbentley/cookiecutter-streamlit)
